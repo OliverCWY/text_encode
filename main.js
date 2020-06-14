@@ -4,9 +4,14 @@ var basic_codec=(()=>{
 		for(var i of Array.from(key))
 			if(key_.indexOf(i)==-1)key_.push(i)
 		key=key_;
+		console.log(key);
 		var system=key.length-1,encoded=key.join("");
 		for(var i in string){
-			var tmp=string.charCodeAt(i).toString(system);
+			var tmp=[],num=string.charCodeAt(i);
+			while(num>0){
+				tmp.unshift(num%system);
+				num=Math.floor(num/system);
+			}
 			for(var j=0;j<tmp.length;j++){
 				encoded+=key[tmp[j]]
 			}
@@ -40,6 +45,6 @@ var basic_codec=(()=>{
 	}
 	return {
 		encode:encode,
-		decode:decode,
+		decode:decode
 	}
 })();
