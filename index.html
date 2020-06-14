@@ -1,0 +1,98 @@
+<html>
+	<head>
+		<script src="main.js"></script>
+		<title>加解密</title>
+		<style>
+			textarea{
+				height:100%;
+				width:100%;
+			}
+			textarea#decoded{
+				height:calc(100% - 21px)
+			}
+			input{
+				width:100%;
+			}
+			div{
+				width:calc(50% - 36px);
+				height:200px;
+				display:inline-block;
+			}
+			div#middle{
+				width:62px;
+				position:relative;
+				height:200px;
+			}
+			div.vertMid{
+				top:50%;
+				width:100%;
+				height:auto;
+				display:block;
+				position:absolute;
+				transform:translateY(-50%);
+			}
+			div.vertMid button{
+				width:100%;
+			}
+		</style>
+	</head>
+	<body>
+		<div>
+			输入密钥及明文：
+			<textarea type="text" id="key" style="height:21px"></textarea><br>
+			<textarea id="decoded"></textarea>
+		</div>
+		<div id="middle">
+			<div class="vertMid">
+				<button onclick="start_encoding()">加密</button>
+				<br>
+				<br>
+				<button onclick="start_decoding()">解密</button>
+			</div>
+		</div>
+		<div>
+			输入密文：
+			<textarea id="encoded"></textarea>
+		</div>
+		<br>
+		<textarea id="keys" style="width:100%;height:300px"></textarea>
+		<script>
+			var d_text=document.getElementById("decoded"),e_text=document.getElementById("encoded"),k_input=document.getElementById("key");
+			function start_encoding(){
+				e_text.value=encode(d_text.value,k_input.value);
+			}
+			function start_decoding(){
+				var tmp=decode(e_text.value);
+				d_text.value=tmp.text;
+				k_input.value=tmp.key;
+			}
+			var keys=[
+			"😅😛🤪🧐🤩😐😷🎃🤛😻🙄",
+			"你妈死了",
+			"wdnm",
+			"临兵斗者皆阵列前行",
+			"旡旣旤兂",
+			"寽対尀専尃尅尌",
+			"尐尒尕尗尛尜尞尟尠",
+			"収叏叐叒叓叕叚叜叝叞叠",
+			"厷厸厹厺厼厽厾叀叁参叄叅叆叇亝",
+			"叧叨叭叱叴叵叺叻叼叽叾卟叿吀吁",
+			"囘囙囜囝回囟囡団囤囥囦囧囨囩囱",
+			"圠圡圢圤圥圦圧圩圪圫圬圮圯地圱",
+			"壱売壳壴壵壶壷壸壶壻壸壾壿夀夁",
+			"夃夅夆夈変夊夌夎夐夑夒夓夔夗夘",
+			"夨夨夬夯夰夲夳夵夶夹夻夼夽夹夿",
+			"奵奺奻奼奾奿妀妁妅妉妊妋妌妍妎",
+			"孑孒孓孖孚孛孜孞孠孡孢孥学孧孨",
+			"宄宆宊宍宎宐宑宒宓宔宖実宥宧宨",
+			"嚍嚎嚏尝嚑嚒嚓嚔噜嚖嚗嚘啮嚚嚛嚜嚝嚞嚟嚠嚡嚢嚣嚤呖嚧咙嚩咙嚧嚪嚫嚬嚭嚯嚰",
+			"垱壌壍埙壏壐壑壒压壔壕壖壗垒圹垆壛壜壝垄壠壡坜壣壤壥壦壧壨坝塆圭坛壈壉壊",
+			"夿奀奁奃奂奄奃奅奆奊奌奍奏奂奒奓奘奙奚奛奜奝奞奟奡奣奤奦奨奁奫妸奯奰奱奲",
+			"嬱嬲嬳嬴嬵嬶嬷婶嬹嬺嬻嬼嬽嬾嬿孀孁孂娘孄孅孆孇孆孈孉孊娈孋孊孍孎孏嫫婿媚",
+			"😀😁😂😃😄😅😆😇😈😉😐😑😒😓😔😕😖😗😘😙😠😡😢😣😤😥😦😧😨😩😰😱😲😳😴😵😶😷😸😹🙀🙁🙂🙃🙄🙅🙆🙇🙈🙉🚀🚁🚂🚃🚄🚅🚆🚇🚈🚉🚐🚑🚒🚓🚔🚕🚖🚗🚘🚙",
+			"🤐🤑🤒🤓🤔🤕🤖🤗🤘🤙🤠🤡🤢🤣🤤🤥🤦🤧🤨🤩🤰🤱🤲🤳🤴🤵🤶🤷🤸🤹🥀🥁🥂🥃🥄🥅🥇🥈🥉🥐🥑🥒🥓🥔🥕🥖🥗🥘🥙🥠🥡🥢🥣🥤🥥🥦🥧🥨🥩🥰🥱🥳🥴🥵🥶🦀🦁🦂🦃🦄🦅🦆🦇🦈🦉🦐🦑🦒🦓🦔🦕🦖🦗🦘🦙",			
+			];
+			document.getElementById("keys").value="快捷密钥：\n"+keys.join("\n");
+		</script>
+	</body>
+</html>
