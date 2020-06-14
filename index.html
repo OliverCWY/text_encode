@@ -59,10 +59,10 @@
 		<script>
 			var d_text=document.getElementById("decoded"),e_text=document.getElementById("encoded"),k_input=document.getElementById("key");
 			function start_encoding(){
-				e_text.value=encode(d_text.value,k_input.value);
+				e_text.value=basic_codec.encode(d_text.value,k_input.value);
 			}
 			function start_decoding(){
-				var tmp=decode(e_text.value);
+				var tmp=basic_codec.decode(e_text.value);
 				d_text.value=tmp.text;
 				k_input.value=tmp.key;
 			}
