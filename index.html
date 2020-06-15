@@ -1,7 +1,6 @@
 <html>
 	<head>
 		<script src="main.js"></script>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>加解密</title>
 		<style>
 			textarea{
@@ -59,17 +58,30 @@
 		<textarea id="keys" style="width:100%;height:300px"></textarea>
 		<script>
 			var d_text=document.getElementById("decoded"),e_text=document.getElementById("encoded"),k_input=document.getElementById("key");
-			function start_encoding(){
-				e_text.value=basic_codec.encode(d_text.value,k_input.value);
+			start_encoding=()=>{
+				var best=0,record=Infinity,text=d_text.value,key=k_input.value;
+				var key_=[];
+				for(var i of Array.from(key))
+					if(key_.indexOf(i)==-1)key_.push(i)
+				key=key_;
+				for(var i=3;i<=key.length;i++){
+					var system=i-1;
+					var count=i+text.length;
+					for(var j=0;j<text.length;j++)count+=Math.ceil(Math.log(text.charCodeAt(j))/Math.log(system));
+					if(count<record){
+						record=count;
+						best=i;
+					}
+				}
+				e_text.value=basic_codec.encode(text,key.slice(0,best).join(""));
 			}
-			function start_decoding(){
+			start_decoding=()=>{
 				var tmp=basic_codec.decode(e_text.value);
 				d_text.value=tmp.text;
 				k_input.value=tmp.key;
 			}
 			var keys=[
 			"😅😛🤪🧐🤩😐😷🎃🤛😻🙄",
-			" ̸̵̶̴̷̡̢̨̧̛͓̳̜̪̟̠̻̖̹̣̤̙͚̱͇̬͕̰͍̮͎̝͈̫̗̘̞̥̦̩̭̯̲̺̼͉͐̂̍̅̔͋͂͗̃̈̏̎̄̿͌̑̓̈́̇̆̀́̉̊̋̌̐̒̓̽̾̀́͆͊̕͘̚͜͝ͅ͏͔͖͙͑͒͛ͣͤͥͦͧͨͩͪͫͬͭͮͯ͟͢͞͠͡",
 			"̸̵̶̴̷̡̢̨̧̛͓̳̜̪̟̠̻̖̹̣̤̙͚̱͇̬͕̰͍̮͎̝͈̫̗̘̞̥̦̩̭̯̲̺̼͉͐̂̍̅̔͋͂͗̃̈̏̎̄̿͌̑̓̈́̇̆̀́̉̊̋̌̐̒̓̽̾̀́͆͊̕͘̚͜͝ͅ͏͔͖͙͑͒͛ͣͤͥͦͧͨͩͪͫͬͭͮͯ͟͢͞͠͡",
 			"你妈死了",
 			"wdnm",
@@ -99,4 +111,3 @@
 		</script>
 	</body>
 </html>
-

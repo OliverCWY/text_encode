@@ -4,7 +4,6 @@ var basic_codec=(()=>{
 		for(var i of Array.from(key))
 			if(key_.indexOf(i)==-1)key_.push(i)
 		key=key_;
-		console.log(key);
 		var system=key.length-1,encoded=key.join("");
 		for(var i in string){
 			var tmp=[],num=string.charCodeAt(i);
