@@ -1,7 +1,6 @@
 <html>
 	<head>
 		<script src="main.js"></script>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>加解密</title>
 		<style>
 			textarea{
@@ -39,7 +38,7 @@
 	</head>
 	<body>
 		<div>
-			输入密钥及明文：
+			密钥及明文：
 			<textarea type="text" id="key" style="height:21px"></textarea><br>
 			<textarea id="decoded"></textarea>
 		</div>
@@ -52,7 +51,7 @@
 			</div>
 		</div>
 		<div>
-			输入密文：
+			密文：
 			<textarea id="encoded"></textarea>
 		</div>
 		<br>
@@ -60,16 +59,15 @@
 		<script>
 			var d_text=document.getElementById("decoded"),e_text=document.getElementById("encoded"),k_input=document.getElementById("key");
 			function start_encoding(){
-				e_text.value=basic_codec.encode(d_text.value,k_input.value);
+				e_text.value=encode(d_text.value,k_input.value);
 			}
 			function start_decoding(){
-				var tmp=basic_codec.decode(e_text.value);
+				var tmp=decode(e_text.value);
 				d_text.value=tmp.text;
 				k_input.value=tmp.key;
 			}
 			var keys=[
 			"😅😛🤪🧐🤩😐😷🎃🤛😻🙄",
-			" ̸̵̶̴̷̡̢̨̧̛͓̳̜̪̟̠̻̖̹̣̤̙͚̱͇̬͕̰͍̮͎̝͈̫̗̘̞̥̦̩̭̯̲̺̼͉͐̂̍̅̔͋͂͗̃̈̏̎̄̿͌̑̓̈́̇̆̀́̉̊̋̌̐̒̓̽̾̀́͆͊̕͘̚͜͝ͅ͏͔͖͙͑͒͛ͣͤͥͦͧͨͩͪͫͬͭͮͯ͟͢͞͠͡",
 			"̸̵̶̴̷̡̢̨̧̛͓̳̜̪̟̠̻̖̹̣̤̙͚̱͇̬͕̰͍̮͎̝͈̫̗̘̞̥̦̩̭̯̲̺̼͉͐̂̍̅̔͋͂͗̃̈̏̎̄̿͌̑̓̈́̇̆̀́̉̊̋̌̐̒̓̽̾̀́͆͊̕͘̚͜͝ͅ͏͔͖͙͑͒͛ͣͤͥͦͧͨͩͪͫͬͭͮͯ͟͢͞͠͡",
 			"你妈死了",
 			"wdnm",
